@@ -1,11 +1,10 @@
 package io.github.sagar15795.kotlindemo.data.remote
 
-import io.github.sagar15795.kotlindemo.data.model.RedditNewsResponse
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 
 
 class RestAPI() {
@@ -22,12 +21,13 @@ class RestAPI() {
                 .baseUrl("https://www.reddit.com")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
 
         redditApi = retrofit.create(RedditApi::class.java)
     }
 
-    fun getNews(after: String, limit: String): Call<RedditNewsResponse> {
-        return redditApi.getTop(after, limit)
+    fun getRestApiClient(): RedditApi {
+        return redditApi
     }
 }
