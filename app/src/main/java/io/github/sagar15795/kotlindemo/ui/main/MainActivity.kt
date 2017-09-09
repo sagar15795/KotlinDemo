@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun showNewsList(t: RedditNewsResponse?) {
         val layoutManager : LinearLayoutManager = LinearLayoutManager(this)
         recyclerViewNewsList.layoutManager = layoutManager
-        recyclerViewNewsList.adapter = MainAdapter(t!!)
+        recyclerViewNewsList.adapter = MainAdapter(t!!,this)
     }
 
     private lateinit var recyclerViewNewsList: RecyclerView

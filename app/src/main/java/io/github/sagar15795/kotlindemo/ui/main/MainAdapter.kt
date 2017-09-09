@@ -1,17 +1,20 @@
 package io.github.sagar15795.kotlindemo.ui.main
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import io.github.sagar15795.kotlindemo.R
 import io.github.sagar15795.kotlindemo.data.model.RedditNewsResponse
 import io.github.sagar15795.kotlindemo.utils.getFriendlyTime
 
 
-class MainAdapter(var itemsList: RedditNewsResponse) : RecyclerView.Adapter<MainAdapter
+class MainAdapter(var itemsList: RedditNewsResponse,var context : Context) : RecyclerView
+.Adapter<MainAdapter
 .NewsViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -23,6 +26,10 @@ class MainAdapter(var itemsList: RedditNewsResponse) : RecyclerView.Adapter<Main
         holder.description!!.text = itemsList.data.children[position].data.title
         holder.author!!.text = itemsList.data.children[position].data.author
         holder.time!!.text = itemsList.data.children[position].data.created.getFriendlyTime()
+
+        Picasso.with(context).load(itemsList.data.children[position].data.thumbnail).into(holder
+                .imgThumbnail);
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): NewsViewHolder {
