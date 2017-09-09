@@ -21,11 +21,11 @@ class MainPresenter(private var dataManager: DataManager) : BasePresenter<MainCo
                     }
 
                     override fun onNext(t: RedditNewsResponse?) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        mvpView!!.showNewsList(t)
                     }
 
                     override fun onCompleted() {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
                     }
 
                 })
